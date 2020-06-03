@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_write">
+
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="392dp"
+        android:layout_height="97dp"
+        android:background="#3F51B5"
+        android:gravity="center"
+        android:text="게시물 작성"
+
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.006" />
+
+    <EditText
+        android:id="@+id/edittxt_write"
+        android:layout_width="344dp"
+        android:layout_height="238dp"
+
+        android:layout_weight="1"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="글을 입력하세요."
+        android:inputType="textPersonName"
+        android:maxLength="200"
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_write" />
+
+    <Button
+        android:id="@+id/btn_write_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="취소"
+
+        app:layout_constraintStart_toStartOf="@+id/edittxt_write"
+        app:layout_constraintTop_toBottomOf="@+id/text1" />
+
+
+    <Button
+        android:id="@+id/btn_write_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="완료"
+        app:layout_constraintEnd_toEndOf="@+id/edittxt_write"
+        app:layout_constraintTop_toBottomOf="@+id/text1" />
+
+    <Button
+        android:id="@+id/btn_write_to_camera"
+        android:onClick="showCamerBtn"
+        android:layout_width="300dp"
+        android:layout_height="53dp"
+        android:text="사진 찍기"
+        app:layout_constraintEnd_toEndOf="@+id/edittxt_write"
+        app:layout_constraintStart_toStartOf="@+id/edittxt_write"
+        app:layout_constraintTop_toBottomOf="@+id/edittxt_write" />
+
+    <ImageView
+        android:id="@+id/image_write"
+        android:layout_width="332dp"
+        android:layout_height="201dp"
+        app:layout_constraintEnd_toEndOf="@+id/edittxt_write"
+        app:layout_constraintStart_toStartOf="@+id/edittxt_write"
+        app:layout_constraintTop_toBottomOf="@+id/btn_write_done"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/title_write"
+        android:layout_width="167dp"
+        android:layout_height="58dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:hint="제목"
+        app:layout_constraintEnd_toStartOf="@+id/btn_write_done"
+        app:layout_constraintStart_toEndOf="@+id/btn_write_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/text1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
