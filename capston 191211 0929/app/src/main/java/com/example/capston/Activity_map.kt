@@ -2,30 +2,36 @@ package com.example.capston
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.DownloadManager
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.location.Location
+import android.nfc.Tag
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.activity_map.*
 import org.jetbrains.anko.alert
+
+import com.google.android.gms.tasks.OnSuccessListener
+import kotlinx.android.synthetic.main.activity_map.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
@@ -33,6 +39,7 @@ import org.jetbrains.anko.yesButton
 
 var hr :Int = 0
 var latLng = LatLng(35.076168,129.089591) //해양대 좌표
+//var latLng = LatLng(-34.0, 151.0)//시드니 좌표
 var get = false
 
 
@@ -131,15 +138,20 @@ class Activity_map : AppCompatActivity(), OnMapReadyCallback {
             val intent_towrite = Intent(this, Activity_write::class.java)
             //intent_towrite.putExtra("latLng", latLng)
 
-            val args = Bundle()
-            args.putParcelable("position", latLng);
+            //latLng = 위도+경도
+            //위도 latitude
+            //경도 longitude
+
+            //val args = Bundle()
+            //args.putParcelable("position", latLng);
             //args에 위치넣기
-            intent_towrite.putExtra("position", args);
+
+            intent_towrite.putExtra("latitude", latLng.latitude)
+            intent_towrite.putExtra("longitude", latLng.longitude)
 
             startActivity(intent_towrite)
             finish()
         }
-
     }
 
     //오픈소스 시작
@@ -167,13 +179,12 @@ class Activity_map : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        val sydney = LatLng(-34.0, 151.0) // 위도 경도, 변수에 저장. 시드니
         val kmou = LatLng(35.076168,129.089591) //해양대 좌표
-        //35.076168,129.089591
-
         //mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         // 지도의 표시를 하고 제목을 추가.
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kmou, 17f))//어플 시작 화면 좌표
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney)) // 그냥 시작뷰 줌 없음
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kmou, 17f))
         // 마커 위치로 지도 이동.
     }
 
@@ -263,5 +274,4 @@ class Activity_map : AppCompatActivity(), OnMapReadyCallback {
     }
 
 }
-
 
