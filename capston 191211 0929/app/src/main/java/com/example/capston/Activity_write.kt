@@ -4,12 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_write.*
-import org.jetbrains.anko.image
 
 var bitmap : Bitmap ?= null
 
@@ -20,6 +19,8 @@ class Activity_write : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write)
+
+        val bundle = intent.getParcelableExtra<Bundle>("position")
 
         btn_write_cancel.setOnClickListener {
             val itn = Intent(this, Activity_map::class.java)
